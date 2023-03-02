@@ -12,14 +12,18 @@ namespace BookStore.Controllers
     {
         private IBookStoreRepository repo;
         private BookStoreContext context { get; set; }
+        //repository setup
         public HomeController(IBookStoreRepository temp)
         {
             repo = temp;
         }
         public IActionResult Index(int pageNum = 1)
         {
+
+            //initializing page num
             int pageSize = 10;
 
+            //calculating number of pages using linq
             var x = new BooksViewModel
             {
                 Book = repo.book
