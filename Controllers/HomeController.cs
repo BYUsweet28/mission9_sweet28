@@ -17,7 +17,7 @@ namespace BookStore.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookCategory, int pageNum = 1)
         {
 
             //initializing page num
@@ -27,13 +27,17 @@ namespace BookStore.Controllers
             var x = new BooksViewModel
             {
                 Book = repo.book
-                .OrderBy(p => p.Title)
+                .Where(b => b.Category == bookCategory || bookCategory == null)
+                .OrderBy(b => b.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumProjects = repo.book.Count(),
+                    TotalNumProjects = 
+                        (bookCategory ==null
+                            ? repo.book.Count()
+                            : repo.book.Where(x => x.Category == bookCategory).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }

@@ -1,0 +1,41 @@
+﻿@page
+@model BookStore.Pages.BuyModel
+@{
+}
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Price</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    @*DIsplaying the cart to the user*@
+    <tbody>
+        @foreach(var i in Model.basket.Items)
+            {
+                <tr>
+                    <td>@i.Book.Price</td>
+                    <td>@i.Book.Title</td>
+                    <td>@i.Quantity</td>
+                    <td>@(i.Quantity * i.Book.Price)</td>
+                </tr>
+            }
+    </tbody>
+    @*Displaying the total*@
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.basket.Calculatetotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table>
+
+@*Returning to the correct url*@
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Add Another Book</a>
+</div>

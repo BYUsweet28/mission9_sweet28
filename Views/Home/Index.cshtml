@@ -5,43 +5,8 @@
 
 @foreach (var b in Model.Book)
 {
-    <div class="card card-outline-primary m-1 p-1">
-        <div class="bg-faded p-1">
-            <h4>
-                @b.Title
-                <span class="" style="float:right">
-                    Author: @b.Author
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    Publisher: @b.Publisher
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    ISBN: @b.Isbn
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    Classification: @b.Classification
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    Category: @b.Category
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    Page Count: @b.PageCount
-                </span>
-                <br />
-                <span class="" style="float:right">
-                    Price: @b.Price
-                </span>
-            </h4>
-        </div>
-    </div>
+    <partial name="BookSummary" model="b" />
 }
-<div page-blah="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
-          page-class="btn" page-class-normal="btn-outline-dark"
-          page-class-selected="btn-primary" class="btn-group pull-right m-1">
-    &nbsp;
+<div page-blah="@Model.PageInfo" page-action="Index" page-class="btn" page-classes-enabled="true"
+          page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1">
 </div>
